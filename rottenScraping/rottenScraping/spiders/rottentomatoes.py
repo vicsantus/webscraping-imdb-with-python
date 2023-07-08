@@ -18,7 +18,8 @@ class RottentomatoesSpider(scrapy.Spider):
             yield {
                 "titulo": self.format(tituloUnformated),
                 "tomatometer": films.css(
-                    '.js-tile-link score-pairs::attr(audiencescore)').get(),
+                    '.js-tile-link score-pairs::attr(criticsscore)').get(),
                 "audience_score": films.css(
-                    '.js-tile-link score-pairs::attr(criticsscore)').get()
+                    '.js-tile-link score-pairs::attr(audiencescore)').get(),
+                "lancamento": self.format(films.css('.smaller::text').get())
             }
